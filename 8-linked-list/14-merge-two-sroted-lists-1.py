@@ -32,11 +32,7 @@ class Solution:
 
 if __name__ == '__main__':
     solution = Solution()
-    param1 = ListNode(1)
-    param1.next = ListNode(2)
-    # param1.next.next = ListNode(4)
-    param2 = ListNode(1)
-    param2.next = ListNode(3)
-    # param2.next.next = ListNode(4)
+    param1 = ListNode(1, ListNode(2, ListNode(4)))
+    param2 = ListNode(1, ListNode(3, ListNode(4)))
     result = solution.mergeTwoLists(param1, param2)
     print(result.print_list())

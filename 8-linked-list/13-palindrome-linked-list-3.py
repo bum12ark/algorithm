@@ -36,9 +36,5 @@ class Solution:
 
 if __name__ == '__main__':
     solution = Solution()
-    param = ListNode(1)
-    param.next = ListNode(2)
-    param.next.next = ListNode(3)
-    param.next.next.next = ListNode(2)
-    param.next.next.next.next = ListNode(1)
+    param = ListNode(1, ListNode(2, ListNode(3, ListNode(2, ListNode(1)))))
     print(solution.isPalindrome(param))
