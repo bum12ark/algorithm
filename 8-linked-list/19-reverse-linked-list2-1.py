@@ -5,3 +5,31 @@
 - 출력
 1->4->3->2->5->None
 """
+
+
+class ListNode:
+    def __init__(self, val=0, next=None):
+        self.val = val
+        self.next = next
+
+    def print_list(self):
+        cur = self
+        while cur:
+            print(cur.val, end='->')
+            cur = cur.next
+
+class Solution:
+    def reverseList(self, head: ListNode) -> ListNode:
+        prev = None
+        current = head
+        while current:
+            next = current.next
+            next.next = current
+            current.next = next.next
+            prev =
+        pass
+
+
+
+    def reverseBetween(self, head: ListNode, m: int, n: int) -> ListNode:
+        pass

@@ -8,12 +8,14 @@ class ListNode:
         while cur:
             print(cur.val, end='->')
             cur = cur.next
+
+
 class Solution:
     # 전가산기구현
     def addTwoNumbers(selfself, l1: ListNode, l2: ListNode) -> ListNode:
         root = head = ListNode(0)
 
-        carry = 0 # 자리올림수
+        carry = 0  # 자리올림수
         while l1 or l2 or carry:
             sum = 0
             # 두 입력값의 합 계산
@@ -30,6 +32,7 @@ class Solution:
             head = head.next
 
         return root.next
+
 
 if __name__ == '__main__':
     solution = Solution()
