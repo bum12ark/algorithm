@@ -22,9 +22,9 @@ class MyCircularQueue:
 
     def __init__(self, k: int):
         self.q = [None] * k
-        self.max_len = k
-        self.p1 = 0
-        self.p2 = 0
+        self.max_len = k # 최대 길이
+        self.p1 = 0 # front 포인터
+        self.p2 = 0 # rear 포인터
 
     # 리어 포인터 이동
     def enQueue(self, value: int) -> bool:
@@ -42,20 +42,19 @@ class MyCircularQueue:
         else:
             self.q[self.p] = None
             self.p1 = (self.p1 + 1) % self.max_len
-            return  True
+            return True
 
     def Front(self) -> int:
-        return self.q[self.p1]
+        return -1 if self.q[self.p1] is None else self.q[self.p1]
 
     def Rear(self) -> int:
-        pass
+        return -1 if self.q[self.p2 - 1] is None else self.q[self.p2 - 1]
 
     def isEmpty(self) -> bool:
-        pass
+        return self.q[self.p1] is None and self.p1 == self.p2
 
     def isFull(self) -> bool:
-        pass
-
+        return self.p1 == self.p2 and self.q[self.p1] is not None
 
 if __name__ == '__main__':
     circularQueue = MyCircularQueue()
