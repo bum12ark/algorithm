@@ -16,12 +16,13 @@
 
 class Solution:
     def removeDuplicateLetters(self, s: str) -> str:
+        # 중복을 제거한 제일 먼저오는 알파벳 순서를 가져오기 위한 set
         sorted_set = sorted(set(s))
         # 집합으로 정렬
         for char in sorted_set:
             suffix_index = s.index(char)
             suffix = s[suffix_index:]
-            # 전체 집합과 접미사 집합이 일치할 때 분리 진행
+            # 전체 집합과 접미사 집합이 일치할 때 분리 진행 (중복을 제거하기 위함)
             set_s = set(s)
             set_suffix = set(suffix)
             if set_s == set_suffix:
@@ -31,5 +32,5 @@ class Solution:
 
 if __name__ == '__main__':
     solution = Solution()
-    param = "cbacdcbc"
+    param = "cbacdcb"
     print(solution.removeDuplicateLetters(param))
