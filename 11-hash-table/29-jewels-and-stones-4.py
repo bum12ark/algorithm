@@ -11,23 +11,9 @@ Output : 0
 
 
 class Solution:
-    # 해시 테이블을 이용한 풀이
+    # 파이썬다운 방식 (리스트 컴프리핸션 사용)
     def numJewelsInStones(self, J: str, S: str) -> int:
-        freqs = {}
-        count = 0
-
-        for char in S:
-            if char not in freqs:
-                freqs[char] = 1
-            else:
-                freqs[char] += 1
-
-        for char in J:
-            if char in freqs:
-                count += freqs[char]
-
-        return count
-
+        return sum(s in J for s in S)
 
 if __name__ == '__main__':
     solution = Solution()

@@ -8,23 +8,20 @@ Output : 3
 Input : J = "z", S = "ZZ"
 Output : 0
 """
+import collections
 
 
 class Solution:
-    # 해시 테이블을 이용한 풀이
+    # defaultdict를 이용한 비교 생략
     def numJewelsInStones(self, J: str, S: str) -> int:
-        freqs = {}
+        freqs = collections.defaultdict(int)
         count = 0
 
         for char in S:
-            if char not in freqs:
-                freqs[char] = 1
-            else:
-                freqs[char] += 1
+            freqs[char] += 1
 
         for char in J:
-            if char in freqs:
-                count += freqs[char]
+            count += freqs[char]
 
         return count
 
