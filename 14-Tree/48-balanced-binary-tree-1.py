@@ -41,10 +41,12 @@ class Solution:
 
             left = check(node.left)
             right = check(node.right)
+            # 높이 차이가 나는 경우 -1, 이외에는 높이에 따라 1 증가
+            if left == -1 or right == -1 or abs(left - right) > 1:
+                return -1
+            return max(left, right) + 1
 
-            return max(left, right)
-
-        check(root)
+        return check(root) != -1
 
 if __name__ == '__main__':
     param1 = TreeNode(3, TreeNode(9), TreeNode(20, TreeNode(15), TreeNode(7)))
