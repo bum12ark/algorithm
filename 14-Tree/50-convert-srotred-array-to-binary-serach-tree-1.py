@@ -42,21 +42,5 @@ class Solution:
 
         return node
 
-    def serialize(self, root: TreeNode) -> str:
-        queue = collections.deque([root])
-        result = ['#']
-
-        while queue:
-            node = queue.popleft()
-            if node:
-                queue.append(node.left)
-                queue.append(node.right)
-
-                result.append(str(node.val))
-            else:
-                result.append('#')
-        return ' '.join(result)
-
 if __name__ == '__main__':
     result = Solution().sortedArrayToBST([-10, -7, -3, 0, 5, 7, 9])
-    print(Solution().serialize(result))
