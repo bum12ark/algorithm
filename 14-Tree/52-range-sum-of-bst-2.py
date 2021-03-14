@@ -20,9 +20,7 @@ class TreeNode:
         self.left = left
         self.right = right
 
-
 class Solution:
-    # DFS 가지치기로 필요한 노드 탐색
     def rangeSumBST(self, root: TreeNode, L: int, R: int) -> int:
         def dfs(node: TreeNode):
             if not node:
@@ -32,7 +30,6 @@ class Solution:
                 return dfs(node.right)
             elif node.val > R:
                 return dfs(node.left)
-
             return node.val + dfs(node.left) + dfs(node.right)
 
         return dfs(root)

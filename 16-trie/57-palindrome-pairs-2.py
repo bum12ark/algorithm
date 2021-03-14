@@ -1,5 +1,5 @@
 """
-* 팰린드롬 페어
+* 팰린드롬 페어 [복습]
 단어 리스트에서 words[i] + words[j]가 팰린드롬이 되는 모든 인덱스 조합 (i, j)를 구하라
 - Example 1
 Input: ["abcd", "dcba", "lls", "s", "sssll"]

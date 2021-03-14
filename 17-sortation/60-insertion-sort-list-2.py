@@ -18,7 +18,7 @@ class ListNode:
 
 class Solution:
     def insertionSortList(self, head: ListNode) -> ListNode:
-        cur = parent = ListNode(None)
+        cur = parent = ListNode(0)
         while head:
             # 커서 이동
             while cur.next and cur.next.val < head.val:
@@ -27,7 +27,8 @@ class Solution:
             cur.next, head.next, head = head, cur.next, head.next
 
             # inner while에서 이동한 cur의 포인터를 처음부터 비교하기 위해 맨 처음으로 옮기기
-            cur = parent
+            if head and cur.val > head.val:
+                cur = parent
         return parent.next or cur.next
 
 if __name__ == '__main__':
