@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/pythone-algorithm-interview.iml" filepath="$PROJECT_DIR$/.idea/pythone-algorithm-interview.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../algorithm/.idea/algorithm.iml" filepath="$PROJECT_DIR$/../algorithm/.idea/algorithm.iml" />
     </modules>
   </component>
 </project>
