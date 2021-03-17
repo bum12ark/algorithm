@@ -22,24 +22,25 @@ from typing import List
 
 class Solution:
     def diffWaysToCompute(self, expression: str) -> List[int]:
-        def comput(left, right, v):
-            ret_val = eval(str(left) + v + str(right))
-            return ret_val
+        def comput(left, right, operater):
+            ret = []
+            for l in left:
+                for r in right:
+                    ret.append(eval(str(l) + operater + str(r)))
+            return ret
 
         if expression.isdigit():
             return [int(expression)]
 
-        result = []
-        for i, v in enumerate(expression):
-            if v in "+-*":
-                print("left :", expression[:i])
-                print("right :", expression[i + 1:])
-                left = self.diffWaysToCompute(expression[:i])
-                right = self.diffWaysToCompute(expression[i + 1:])
-                result.append(comput(left, right, v))
-        return result
+        results = []
+        for index, value in enumerate(expression):
+            if value in "+-*":
+                left = self.diffWaysToCompute(expression[:index])
+                right = self.diffWaysToCompute(expression[index + 1:])
+                results.extend(comput(left, right, value))
+        return results
 
 
 if __name__ == '__main__':
     test_1 = "2-1-1"
-    Solution().diffWaysToCompute(test_1)
+    print(Solution().diffWaysToCompute(test_1))
