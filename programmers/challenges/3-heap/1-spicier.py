@@ -27,6 +27,7 @@ Output: 2
 import heapq
 from typing import List
 
+
 class Solution:
     # 내 풀이
     def solution(self, scoville: List[int], K: int) -> int:
@@ -68,4 +69,3 @@ if __name__ == '__main__':
     test_scovile = [1, 2, 3, 9, 10, 12]
     test_K = 7
     print(Solution().spicier(test_scovile, test_K))
-
