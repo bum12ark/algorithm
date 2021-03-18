@@ -28,6 +28,7 @@ import heapq
 from typing import List
 
 class Solution:
+    # 내 풀이
     def solution(self, scoville: List[int], K: int) -> int:
         count = 0
         heapq.heapify(scoville)
