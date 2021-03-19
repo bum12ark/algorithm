@@ -42,16 +42,40 @@ from typing import List
 
 
 class Solution:
+    # O(n) 으로 해결
     def functional_development(self, progresses: List[int], speeds: List[int]) -> List[int]:
-        # 개발에 걸리는 시간
-        develop_days = collections.deque(
-            [math.ceil((100 - param1[i]) / speeds[i]) for i in range(len(progresses))]
-        )
-        print(develop_days)
+        develop_days = [math.ceil((100 - progresses[i]) / speeds[i]) for i in range(len(progresses))]
 
+        prev = 0
+        result = []
+        for idx in range(1, len(develop_days)):
+            if develop_days[prev] < develop_days[idx]:
+                result.append(idx - prev)
+                prev = idx
+        result.append(len(develop_days) - prev)
+        return result
+
+    # 큐 사용
+    def solution(self, progresses: List[int], speeds: List[int]) -> List[int]:
+        time = count = 0
+
+        result = []
+        while len(progresses):
+            if progresses[0] + time * speeds[0] >= 100:
+                progresses.pop(0)
+                speeds.pop(0)
+                count += 1
+            else:
+                if count > 0:
+                    result.append(count)
+                    count = 0
+                time += 1
+        result.append(count)
+        return result
 
 
 if __name__ == '__main__':
     param1 = [93, 30, 55]
     param2 = [1, 30, 5]
-    print(Solution().functional_development(param1, param2))
+    # print(Solution().functional_development(param1, param2))
+    print(Solution().solution(param1, param2))
