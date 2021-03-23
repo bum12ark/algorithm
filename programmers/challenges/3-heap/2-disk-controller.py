@@ -35,7 +35,27 @@ from typing import List
 
 
 def solution(jobs: List[int]) -> int:
-    pass
+    jobs.sort()
+    total, count, current, last = 0, 0, 0, -1
+    heap = []
+
+    while count < len(jobs):
+        for s, c in jobs:
+            if last < s <= current:
+                heapq.heappush(heap, (c, s))
+        # 하나만 뽑는다. 이후에 더 짧은 시간을 갖는 job이 들어 올 수 있기 때문
+        if heap:
+            _cost, _start = heapq.heappop(heap)
+            # 위의 for문의 if 절에 들어갈 last 변수를 초기화 (이전에 넣었던 job을 또 heap에 넣는 것을 방지)
+            last = current
+            current += _cost
+            total += current - _start
+            count += 1
+        else:
+            current += 1
+
+    return total // len(jobs)
 
 
-solution([[0, 3], [1, 9], [2, 6]])
+if __name__ == '__main__':
+    print(solution([[0, 10], [2, 10], [9, 10], [15, 2]]))
