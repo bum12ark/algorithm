@@ -24,25 +24,19 @@ Input: number = "4177252841", k = 4
 Output: "775841
 """
 
+
 def solution(number: str, k: int) -> str:
-    prev_element = []
-    result = []
-    def permutation(element, k):
-        if k == 0:
-            result.append(''.join(prev_element.copy()))
-        elif k < 0:
-            return
+    stack = []
+    for num in number:
+        while stack and stack[-1] < num and k > 0:
+            stack.pop()
+            k -= 1
+        stack.append(num)
 
-        for idx, value in enumerate(element):
-            next_element = element.copy()
-            next_element.remove(value)
-
-            prev_element.append(value)
-            permutation(next_element, k - 1)
-            prev_element.pop()
-
-    permutation(list(number), k)
-    print(result)
+    if k != 0:
+        stack = stack[:-k]
+    return ''.join(stack)
 
 
-solution("1924", 2)
+if __name__ == '__main__':
+    print(solution("4321", 2))

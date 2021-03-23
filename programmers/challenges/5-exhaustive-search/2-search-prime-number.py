@@ -31,6 +31,8 @@ from typing import List
 
 result: List[int] = []
 prev_element = []
+
+
 def solution(numbers: str) -> int:
     def check(n):
         k = math.sqrt(n)
@@ -63,4 +65,5 @@ def solution(numbers: str) -> int:
     return len(set(result))
 
 
-print(solution("011"))
+if __name__ == '__main__':
+    print(solution("011"))
