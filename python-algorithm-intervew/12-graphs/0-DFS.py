@@ -12,8 +12,8 @@ graph = {
 def recursive_dfs(v, discovered=[]):
     discovered.append(v)
     for w in graph[v]:
-        if not w in discovered:
-            discovered = recursive_dfs(w, discovered)
+        if w not in discovered:
+            recursive_dfs(w, discovered)
     return discovered
 
 # 역순으로 삽입처리
