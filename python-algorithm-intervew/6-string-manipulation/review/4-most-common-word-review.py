@@ -10,18 +10,29 @@ Output: "ball"
 Input: paragraph = "a.", banned = []
 Output: "a"
 """
+import re
 from collections import Counter
 from typing import List
 
 
 class Solution:
     def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
-        pass
+        result = []
+        for word in paragraph.split():
+            word = re.sub(r'[^\w]', '', word).lower()
+            if word not in banned:
+                result.append(word)
+        return Counter(result).most_common()[0][0]
+
 
 
 if __name__ == '__main__':
     paragraph_1, banned_1 = "Bob hit a ball, the hit BALL flew far after it was hit.", ["hit"]
+    paragraph_2, banned_2 = "Bob. hIt, baLl", ["bob", "hit"]
+    paragraph_3, banned_3 = "a, a, a, a, b,b,b,c, c", ["a"]
     print(Solution().mostCommonWord(paragraph_1, banned_1), "ball")
+    print(Solution().mostCommonWord(paragraph_2, banned_2), "ball")
+    print(Solution().mostCommonWord(paragraph_3, banned_3), "b")
 """
 [시작 체크 리스트]
 [] 1시간 지났으나 발상 불가 또는 아예 다른 길
