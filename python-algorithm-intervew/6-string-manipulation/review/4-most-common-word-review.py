@@ -18,20 +18,17 @@ from typing import List
 class Solution:
     def mostCommonWord(self, paragraph: str, banned: List[str]) -> str:
         result = []
-        for word in paragraph.split():
-            word = re.sub(r'[^\w]', '', word).lower()
-            if word not in banned:
-                result.append(word)
+        result = [word for word in re.sub(r'[^\w]', ' ', paragraph).lower().split()
+                  if word not in banned]
         return Counter(result).most_common()[0][0]
-
 
 
 if __name__ == '__main__':
     paragraph_1, banned_1 = "Bob hit a ball, the hit BALL flew far after it was hit.", ["hit"]
-    paragraph_2, banned_2 = "Bob. hIt, baLl", ["bob", "hit"]
-    paragraph_3, banned_3 = "a, a, a, a, b,b,b,c, c", ["a"]
     print(Solution().mostCommonWord(paragraph_1, banned_1), "ball")
+    paragraph_2, banned_2 = "Bob. hIt, baLl", ["bob", "hit"]
     print(Solution().mostCommonWord(paragraph_2, banned_2), "ball")
+    paragraph_3, banned_3 = "a, a, a, a, b,b,b,c, c", ["a"]
     print(Solution().mostCommonWord(paragraph_3, banned_3), "b")
 """
 [시작 체크 리스트]
@@ -43,6 +40,6 @@ if __name__ == '__main__':
 
 [완료 후 체크 리스트]
 [] 아예 모르겠음
-[✓] 중간 정도 이해함 (sorted: key=lambda)
-[] 완벽히 이해함
+[] 중간 정도 이해함
+[✓] 완벽히 이해함
 """
