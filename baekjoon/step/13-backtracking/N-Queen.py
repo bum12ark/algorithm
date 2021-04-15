@@ -1,30 +1,36 @@
 """
 출처: https://www.acmicpc.net/problem/9663
 """
+from typing import List
+
+count = 0
 
 
-def n_queens(i, col):
-    n = len(col) - 1
-    if promising(i, col):
-        if i == n:
-            print(col)
-        else:
-            for j in range(1, n + 1):
-                col[i + 1] = j
-                n_queens(i + 1, col)
+def n_queens(y: int, col: List[int]):
+    n = len(col)
 
+    # 탈출문
+    if y == n:
+        # print(col)
+        global count
+        count += 1
+        return
 
-def promising(i, col):
-    k = 1
-    flag = True
-    while k < i and flag:
-        if col[i] == col[k] or abs(col[i] - col[k]) == (i - k):
-            flag = False
-        k += 1
-    return flag
+    for x in range(n):
+        col[y] = x
+        if promising(y, col):
+            n_queens(y + 1, col)
+
+    return count
+
+def promising(y: int, col: List[int]):
+    for x in range(y):
+        if col[y] == col[x] or abs(col[y] - col[x]) == (y - x):
+            return False
+    return True
 
 
 if __name__ == '__main__':
-    N = 8
-    col = [0] * (N + 1)
-    n_queens(0, col)
+    N = int(input())
+    col = [0] * N
+    print(n_queens(0, col))
