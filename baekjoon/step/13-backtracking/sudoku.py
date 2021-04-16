@@ -23,34 +23,33 @@ def sudoku(question, zeros):
         return numbers
 
     def dfs(index):
-        # 탈출 조건
+        global flag
+        # 탈출 조건 (1)
+        if flag:
+            return
+
+        # 탈출 조건 (2)
         if index == len(zeros):
+            flag = True
+            for row in question:
+                # asterisk Unpacking
+                print(*row)
             return
 
         x, y = zeros[index]
-        print(x, y)
 
         valuable = is_promising(x, y)
         for val in valuable:
             question[x][y] = val
             dfs(index + 1)
+            # 유효하지 않을 경우 해당 값을 0으로 초기화
             question[x][y] = 0
 
     dfs(0)
 
 
 if __name__ == '__main__':
-    q = [
-        [0, 3, 5, 4, 6, 9, 2, 7, 8],
-        [7, 8, 2, 1, 0, 5, 6, 0, 9],
-        [0, 6, 0, 2, 7, 8, 1, 3, 5],
-        [3, 2, 1, 0, 4, 6, 8, 9, 7],
-        [8, 0, 4, 9, 1, 3, 5, 0, 6],
-        [5, 9, 6, 8, 2, 0, 4, 1, 3],
-        [9, 1, 7, 6, 5, 2, 0, 8, 0],
-        [6, 0, 3, 7, 0, 1, 9, 5, 2],
-        [2, 5, 8, 3, 9, 4, 7, 6, 0]
-    ]
+    q = [list(map(int, input().split())) for _ in range(9)]
     z = [(i, j) for i in range(9) for j in range(9) if q[i][j] == 0]
-    print(z)
+    flag = False
     sudoku(q, z)

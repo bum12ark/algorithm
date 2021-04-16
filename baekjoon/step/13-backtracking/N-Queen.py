@@ -23,6 +23,7 @@ def n_queens(y: int, col: List[int]):
 
     return count
 
+
 def promising(y: int, col: List[int]):
     for x in range(y):
         if col[y] == col[x] or abs(col[y] - col[x]) == (y - x):
