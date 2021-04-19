@@ -3,20 +3,11 @@
 """
 # param
 size = int(input())
-triangle = [list(map(int, input().split())) for _ in range(size)]
+RGB = [list(map(int, input().split())) for _ in range(size)]
 
-# 2번째 로우부터 시작
-for i in range(1, len(triangle)):
-    for j in range(len(triangle[i])):
-        # 첫번 째 줄
-        if j == 0:
-            triangle[i][j] += triangle[i - 1][j]
-        # 마지막 줄
-        elif j == len(triangle[i]) - 1:
-            triangle[i][j] += triangle[i - 1][j - 1]
-        else:
-            triangle[i][j] += max(triangle[i - 1][j],
-                                  triangle[i - 1][j - 1])
+for idx in range(1, len(RGB)):
+    RGB[idx][0] = min(RGB[idx - 1][1], RGB[idx - 1][2]) + RGB[idx][0]
+    RGB[idx][1] = min(RGB[idx - 1][0], RGB[idx - 1][2]) + RGB[idx][1]
+    RGB[idx][2] = min(RGB[idx - 1][0], RGB[idx - 1][1]) + RGB[idx][2]
 
-print(max(triangle[size - 1]))
-
+print(min(RGB[size - 1]))
