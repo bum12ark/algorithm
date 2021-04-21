@@ -6,7 +6,7 @@
 def GCD(n, m):
     if n < m:
         n, m = m, n
-    if n == 0:
+    if m == 0:
         return m
     if n % m == 0:
         return m
