@@ -7,11 +7,13 @@
 """
 import sys
 
-target = 6
-result = sys.maxsize
+target = 3
 arr = [1, 2, 2, 2, 4, 4]
+result = len(arr)
+
 
 def lower_bound(left, right):
+    global result
     while left <= right:
         mid = left + (right - left) // 2
         # 찾고자 하는 값보다 작으면, mid 이하를 버립니다.
@@ -22,3 +24,8 @@ def lower_bound(left, right):
         else:
             result = min(result, mid)
             right = mid - 1
+    # 찾고자 하는 값이 없으면 그 값 이상이 처음으로 등장하는 위치를 출력합니다.
+    return result
+
+
+print(lower_bound(0, len(arr) - 1))
