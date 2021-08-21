@@ -10,14 +10,12 @@ public class Main {
 
     static int R, C; // 세로의 크기, 가로의 크기
     static int[][] matrix, dp;
-    static boolean[][] visited; // [x][y]
     static int[][] directions = {{-1, 0}, {1, 0}, {0, -1}, {0, 1}}; // 상 하 좌 우
 
     static void input() {
         R = fastReader.nextInt();
         C = fastReader.nextInt();
 
-        visited = new boolean[R][C];
         matrix = new int[R][C];
         dp = new int[R][C];
         for (int r = 0; r < R; r++) {
@@ -32,8 +30,6 @@ public class Main {
         if (x == R - 1 && y == C - 1) {
             return 1;
         }
-
-        visited[x][y] = true;
 
         if (dp[x][y] == -1) {
             dp[x][y] = 0;
