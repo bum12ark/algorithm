@@ -23,6 +23,19 @@ public class Main {
         }
 
         @Override
+        public boolean equals(Object o) {
+            if (this == o) return true;
+            if (o == null || getClass() != o.getClass()) return false;
+            Seat seat = (Seat) o;
+            return x == seat.x && y == seat.y;
+        }
+
+        @Override
+        public int hashCode() {
+            return Objects.hash(x, y);
+        }
+
+        @Override
         public int compareTo(Seat o) {
             if (likeCnt != o.likeCnt) return Integer.compare(o.likeCnt, likeCnt);
             if (emptyCnt != o.emptyCnt) return Integer.compare(o.emptyCnt, emptyCnt);
